@@ -3,11 +3,15 @@ package com.directori.atddorder.application;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.directori.atddorder.domain.PendingOrder;
+import com.directori.atddorder.domain.PendingOrderRepository;
+import com.directori.atddorder.infra.PendingOrderRepositoryMemoryImpl;
 import org.junit.jupiter.api.Test;
 
 public class CreateOrderServiceTest {
 
-  private CreateOrderService createOrderService = new CreateOrderServiceImpl();
+  private final PendingOrderRepository pendingOrderRepository = new PendingOrderRepositoryMemoryImpl();
+  private final CreateOrderService createOrderService = new CreateOrderServiceImpl(
+      pendingOrderRepository);
 
   @Test
   void createPendingOrder() {

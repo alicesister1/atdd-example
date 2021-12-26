@@ -3,7 +3,9 @@ package com.directori.atddorder.infra;
 import com.directori.atddorder.domain.PendingOrder;
 import com.directori.atddorder.domain.PendingOrderRepository;
 import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PendingOrderRepositoryMemoryImpl implements PendingOrderRepository {
 
   private final AtomicLong atomicLong = new AtomicLong(1);

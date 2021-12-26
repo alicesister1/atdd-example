@@ -1,15 +1,17 @@
 package com.directori.atddorder.application;
 
-import com.directori.atddorder.application.CreateOrderService;
-import com.directori.atddorder.application.PendingOrderRequest;
 import com.directori.atddorder.domain.PendingOrder;
 import com.directori.atddorder.domain.PendingOrderRepository;
-import com.directori.atddorder.infra.PendingOrderRepositoryMemoryImpl;
+import org.springframework.stereotype.Service;
 
-// static이 아닌 inner class는 GC가 안되는 문제를 갖고있으므로 static 붙임
+@Service
 public class CreateOrderServiceImpl implements CreateOrderService {
 
-  private PendingOrderRepository pendingOrderRepository = new PendingOrderRepositoryMemoryImpl();
+  private final PendingOrderRepository pendingOrderRepository;
+
+  public CreateOrderServiceImpl(PendingOrderRepository pendingOrderRepository) {
+    this.pendingOrderRepository = pendingOrderRepository;
+  }
 
   @Override
   public PendingOrder createPendingOrder(PendingOrderRequest request) {
